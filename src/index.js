@@ -5,13 +5,24 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
+import { ThemeProvider } from 'styled-components';
+
+const lightTheme = {
+  lightblue: '#47C5FF',
+  blue: '#00A0F4',
+  darkblue: '#0071B9',
+  fade0: '#F1FCFF',
+  fade1: '#D1F4FF'
+};
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <RecoilRoot>
     <BrowserRouter>
       <React.StrictMode>
-        <App />
+        <ThemeProvider theme={lightTheme}>
+          <App />
+        </ThemeProvider>
       </React.StrictMode>
     </BrowserRouter>
   </RecoilRoot>
