@@ -3,7 +3,7 @@ import axios from "axios";
 const openServer = process.env.REACT_APP_OPEN_API_URL;
 const key = process.env.REACT_APP_OPEN_API_KEY;
 
-export const getPlaceDataAPI = async (numOfRows, pageNo) => {
+export const getPlantDataAPI = async (numOfRows, pageNo) => {
     try {
         const response = await axios.get(
             `${openServer}/indfltplt/indfltpltlist?pageNo=${pageNo}&numOfRows=${numOfRows}&serviceKey=${key}&_type=json`);

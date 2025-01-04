@@ -5,12 +5,12 @@ export const Header = () => {
     return (
         <div>
             <HeaderWrapper>
-                <Menu>
+                <Logo>
                     <Link to="/">
-                        지수모
+                        공업용 수질 조회 서비스
                     </Link>
-                </Menu>
-                <Menu>
+                </Logo>
+                <MenuWrapper>
                     <Menu>
                         <Link to="/">
                             홈
@@ -21,8 +21,9 @@ export const Header = () => {
                             즐겨찾기
                         </Link>
                     </Menu>
-                </Menu>
+                </MenuWrapper>
             </HeaderWrapper>
+            
             <Outlet/>
         </div>
     );
@@ -37,9 +38,33 @@ width: 100vw;
 background-color: ${(props) => props.theme.fade1};
 `
 
-const Menu = styled.div`
+const Logo = styled.h2`
+a {
+    text-decoration: none;
+    color: ${(props) => props.theme.darkblue};
+
+    &:hover {
+        color: ${(props) => props.theme.blue};
+    }
+    margin: 0.5rem 5rem;
+}
+`
+
+const MenuWrapper = styled.div`
 display: flex;
 flex-direction: row;
 justify-content: space-between;
-margin: 0.5rem 1rem;
+width: 10rem;
+margin: 0.5rem 5rem;
+`
+
+const Menu = styled.h3`
+a {
+    text-decoration: none;
+    color: ${(props) => props.theme.midblue};
+
+    &:hover {
+        color: ${(props) => props.theme.blue};
+    }
+}
 `

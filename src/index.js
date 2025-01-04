@@ -10,6 +10,7 @@ import { ThemeProvider } from 'styled-components';
 const lightTheme = {
   lightblue: '#47C5FF',
   blue: '#00A0F4',
+  midblue: '#0088D6',
   darkblue: '#0071B9',
   fade0: '#F1FCFF',
   fade1: '#D1F4FF'
