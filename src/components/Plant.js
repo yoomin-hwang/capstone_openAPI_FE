@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 function Plant (item) {
     item = item.item;
@@ -28,11 +29,15 @@ function Plant (item) {
             <div onClick={() => handleClickDetail(item.fltplt)}>
                 {item.fltpltnm}
             </div>
-            <div onClick={() => handleClickHeart(item.fltplt)}>
-                {heart ? <p>❤️</p> : <p>🤍</p>}
-            </div>
+            <Heart onClick={() => handleClickHeart(item.fltplt)}>
+                {heart ? <h1>❤️</h1> : <h1>🤍</h1>}
+            </Heart>
         </div>
     );                     
 };
 
 export default Plant;
+
+const Heart = styled.div`
+cursor: pointer;
+`

@@ -1,13 +1,14 @@
 import { Outlet } from "react-router-dom";
+import { PageWrapper } from "../App";
 
 function LikePage () {
     return (
-        <div>
+        <PageWrapper>
             <Outlet/>
             <div>
                 like
             </div>
-        </div>
+        </PageWrapper>
     );
 };
 

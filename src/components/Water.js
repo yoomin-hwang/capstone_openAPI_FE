@@ -1,5 +1,7 @@
-export const Water = () => {
+export const Water = (item) => {
+    item = item.item;
+
     return (
-        <div>water</div>
+        <div>{item.item1}</div>
     );
 };

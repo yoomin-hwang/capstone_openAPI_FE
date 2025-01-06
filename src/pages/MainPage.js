@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import { getPlantDataAPI } from "../api/api";
 import Plant from "../components/Plant";
+import { PageWrapper } from "../App";
 
 function MainPage () {
     const [plantData, setPlantData] = useState([]);
@@ -21,19 +22,20 @@ function MainPage () {
     }, []);
 
     return (
-        <div>
+        <PageWrapper>
             <Outlet/>
             <MainWrapper>
+                <h1>정수장 목록</h1>
                 {Array.isArray(plantData) && plantData.length > 0 ? ( // 배열인지 확인
                     plantData.map((item) => {
                         // 이 syntax 로는 JSX 구문을 사용할 수 있어서 변수 선언과 같은 더 복잡한 로직 구현 가능함
-                        return <Plant key={item.fltplt} item={item} />;
+                        return <Plant item={item} />;
                     })
                 ) : (
                     <p>Loading...</p>
                 )}
             </MainWrapper>
-        </div>
+        </PageWrapper>
     );
 };
 
