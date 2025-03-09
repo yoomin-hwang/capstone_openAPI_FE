@@ -13,20 +13,21 @@ const lightTheme = {
   midblue: '#0088D6',
   darkblue: '#0071B9',
   fade0: '#F1FCFF',
-  fade1: '#D1F4FF'
+  fade1: '#D1F4FF',
+  ivory0: '#F0F3EF'
 };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <RecoilRoot>
     <BrowserRouter>
+    <RecoilRoot>
       <React.StrictMode>
         <ThemeProvider theme={lightTheme}>
           <App />
         </ThemeProvider>
       </React.StrictMode>
+      </RecoilRoot>
     </BrowserRouter>
-  </RecoilRoot>
 );
 
 // If you want to start measuring performance in your app, pass a function

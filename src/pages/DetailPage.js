@@ -1,10 +1,31 @@
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet, useParams, useNavigate } from "react-router-dom";
 import { Water } from "../components/Water";
 import { useEffect, useState } from "react";
 import { getWaterDataAPI } from "../api/api";
 import { PageWrapper } from "../App";
+import { useSetRecoilState } from 'recoil';
+import { authState } from '../authState';
+import { memberState } from '../memberState';
 
 function DetailPage () {
+    const setAuth = useSetRecoilState(authState);
+    const setMember = useSetRecoilState(memberState);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        setAuth({
+          isAuthenticated: false,
+        });
+        setMember({
+          unique_id: null,          // 사용자 ID
+          name: '',          // 사용자 이름
+          email: '',         // 사용자 이메일
+          level: '',         // 사용자 권한
+        });
+        sessionStorage.removeItem('token'); // 로그아웃 시 토큰 삭제
+        navigate('/'); // 로그아웃 후 로그인 페이지로 이동
+      };
+
     let fltplt = useParams();
     const [waterData, setWaterData] = useState([]);
 
@@ -37,6 +58,7 @@ function DetailPage () {
                     <p>Loading...</p>
                 )}
             </div>
+            <button onClick={handleLogout}>로그아웃</button>
         </PageWrapper>
     );
 };

@@ -6,42 +6,48 @@ import Plant from "../components/Plant";
 import { PageWrapper } from "../App";
 
 function MainPage () {
-    const [plantData, setPlantData] = useState([]);
+    const numOfRows = 30;
+    const pageNo = 1;
 
+    const [plantData, setPlantData] = useState([]);
+    
     const getPlantData = async () => {
         try {
-            const response = await getPlantDataAPI("10", "1");
+            const response = await getPlantDataAPI(numOfRows, pageNo);
             setPlantData(response);
-        } catch (err) { 
-            console.error(err);
+        } catch (error) {
+            console.error(error);
         }
     }
 
     useEffect(() => {
-        getPlantData();
-    }, []);
-
+        getPlantData(); // 초기 데이터 로드
+    }, [pageNo]);
+    
     return (
         <PageWrapper>
             <Outlet/>
-            <MainWrapper>
-                <h1>정수장 목록</h1>
+            <h1>정수장 목록</h1>
+
+            <PlantsWrapper>
                 {Array.isArray(plantData) && plantData.length > 0 ? ( // 배열인지 확인
-                    plantData.map((item) => {
+                    plantData.map((item, index) => {
                         // 이 syntax 로는 JSX 구문을 사용할 수 있어서 변수 선언과 같은 더 복잡한 로직 구현 가능함
-                        return <Plant item={item} />;
+                        return <Plant key={index} item={item} />;
                     })
                 ) : (
-                    <p>Loading...</p>
+                    <p>No data</p>
                 )}
-            </MainWrapper>
+            </PlantsWrapper>
         </PageWrapper>
     );
 };
 
 export default MainPage;
 
-const MainWrapper = styled.div`
+const PlantsWrapper = styled.div`
 display: flex;
-flex-direction: column;
+justify-content: center;
+flex-wrap: wrap;
+width: 90%;
 `
